@@ -8,7 +8,7 @@
       <input placeholder="输入关键词" ref="keyword" @keyup.enter="search" />
     </div>
     <div class="right-view">
-      <a href="/#/admin" target="__black" type="a-link" style="line-height: 32px;width:60px;">后台入口</a>
+      <a href="/#/admin" target="__black" type="a-link" class="admin-entry" style="line-height: 32px;width:60px;">后台入口</a>
       <template v-if="$store.state.user.username">
         <a-dropdown>
           <a class="ant-dropdown-link" @click="e => e.preventDefault()">
@@ -328,7 +328,10 @@ export default {
     font-size: 14px;
     line-height: 22px;
   }
-
+  //为什么这里不变色？？？
+  .admin-entry {
+    color: #8f1212 !important;
+  }
 }
 
 </style>

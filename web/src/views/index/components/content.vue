@@ -197,13 +197,13 @@ export default {
 
 .left-search-item {
   overflow: hidden;
-  border-bottom: 1px solid #cedce4;
+  border-bottom: 1px solid #38a900;
   margin-top: 24px;
   padding-bottom: 24px;
 }
 
 h4 {
-  color: #4d4d4d;
+  color: #1f38f4;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
