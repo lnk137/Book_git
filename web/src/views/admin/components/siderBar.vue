@@ -122,10 +122,7 @@ export default {
             }
           ]
         },
-        {
-          key: '/admin/sysInfo',
-          title: '系统信息'
-        }
+
       ]
     }
   },
