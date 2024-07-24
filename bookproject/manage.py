@@ -4,6 +4,7 @@ import os
 import sys
 
 # 南京诚迈科技 我们喜欢你
+# 拉个屎 你是个大傻逼
 
 def main():
     """Run administrative tasks."""
