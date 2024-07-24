@@ -3,9 +3,6 @@
 import os
 import sys
 
-# 南京诚迈科技 我们喜欢你
-# 123123123321321321
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bookproject.settings')
