@@ -1,5 +1,9 @@
 <template>
   <div style="width: 200px; height: 100%; padding-bottom: 48px; overflow: scroll;">
+    <!-- 在菜单顶部插入图片 -->
+    <div style="text-align: center; margin: 16px 0;">
+      <img src="@/assets/images/小孙7.23.png" alt="Logo" style="width: 400px; height: 200px;">
+    </div>
     <a-menu
       :default-selected-keys="[this.$route.path]"
       :default-open-keys="[]"
@@ -19,9 +23,6 @@
 </template>
 
 <script>
-
-// 参考：https://1x.antdv.com/components/menu-cn/#API
-
 import { Menu } from 'ant-design-vue'
 const SubMenu = {
   template: `
@@ -39,17 +40,16 @@ const SubMenu = {
       </a-sub-menu>
     `,
   name: 'SubMenu',
-  // must add isSubMenu: true
   isSubMenu: true,
   props: {
     ...Menu.SubMenu.props,
-    // Cannot overlap with properties within Menu.SubMenu.props
     menuInfo: {
       type: Object,
       default: () => ({})
     }
   }
 }
+
 export default {
   name: 'SiderBar',
   components: {
@@ -122,7 +122,6 @@ export default {
             }
           ]
         },
-
       ]
     }
   },
@@ -139,23 +138,19 @@ export default {
 <style scoped lang="less">
 @scroll-bar-size: 6px;
 
-// 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸
 ::-webkit-scrollbar {
   width: @scroll-bar-size;
   height: @scroll-bar-size;
   background-color: transparent;
 }
 
-// 定义滚动条轨道 内阴影+圆角
 ::-webkit-scrollbar-track {
-  border-radius:@scroll-bar-size / 2;
+  border-radius: @scroll-bar-size / 2;
   background-color: transparent;
 }
 
-// 定义滑块 内阴影+圆角
 ::-webkit-scrollbar-thumb {
   border-radius: @scroll-bar-size / 2;
-  background-color: rgba(0, 0, 0, .3)
+  background-color: rgba(0, 0, 0, .3);
 }
-
 </style>
