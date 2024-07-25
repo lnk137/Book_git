@@ -1,9 +1,5 @@
 <template>
   <div style="width: 200px; height: 100%; padding-bottom: 48px; overflow: scroll;">
-    <!-- 在菜单顶部插入图片 -->
-    <div style="text-align: center; margin: 16px 0;">
-      <img src="@/assets/images/小孙7.23.png" alt="Logo" style="width: 400px; height: 200px;">
-    </div>
     <a-menu
       :default-selected-keys="[this.$route.path]"
       :default-open-keys="[]"

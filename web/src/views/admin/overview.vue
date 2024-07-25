@@ -65,10 +65,6 @@
         </a-col>
       </a-row>
 
-      <a-card title="最近一周访问量">
-        <div style="height: 300px;" ref="visitChart"></div>
-      </a-card>
-
       <a-row :gutter="[20,20]">
         <a-col :sm="24" :md="24" :lg="12">
           <a-card title="热门借阅排名" style="flex:1;">
