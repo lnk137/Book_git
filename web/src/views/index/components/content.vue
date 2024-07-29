@@ -65,7 +65,7 @@ export default {
       tagData: [],
       loading: false,
 
-      tabData: ['最新', '最热', '推荐'],
+      tabData: ['最新', '最热', '库存最少'],
       selectTabIndex: 0,
       tabUnderLeft: 12,
 
