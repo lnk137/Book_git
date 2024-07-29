@@ -1,5 +1,4 @@
 <template>
-
   <a-spin :spinning="showSpin">
     <div class="main">
       <a-row :gutter="[20,20]">
@@ -65,10 +64,6 @@
         </a-col>
       </a-row>
 
-      <a-card title="最近一周访问量">
-        <div style="height: 300px;" ref="visitChart"></div>
-      </a-card>
-
       <a-row :gutter="[20,20]">
         <a-col :sm="24" :md="24" :lg="12">
           <a-card title="热门借阅排名" style="flex:1;">
@@ -118,6 +113,7 @@ export default {
     console.log(storage.get(ADMIN_TOKEN))
     this.list()
     const that = this
+    
     window.onresize = function () { // resize
       that.visitChart.resize()
       that.barChart.resize()
@@ -218,86 +214,90 @@ export default {
       }
       this.visitChart.setOption(option)
     },
-    initBarChart () {
-      let xData = []
-      let yData = []
+    initBarChart() {
+    let xData = [];
+    let yData = [];
+    
+    // 确保数据存在
+    if (this.data.borrow_rank_data && this.data.borrow_rank_data.length > 0) {
       this.data.borrow_rank_data.forEach((item, index) => {
-        xData.push(item.title)
-        yData.push(item.count)
-      })
-      // const xData = ['遥远的救世主', '平凡的世界', '测试书籍12', '测试书籍13', '测试书籍14', '测试书籍15', '测试书籍16', '测试书籍17']
-      // const yData = [220, 200, 180, 150, 130, 110, 100, 80]
-      this.barChart = echarts.init(this.$refs.barChart)
-      let option = {
-        grid: {
-          // 让图表占满容器
-          top: '40px',
-          left: '40px',
-          right: '40px',
-          bottom: '40px'
+        xData.push(item.title);
+        yData.push(item.count);
+      });
+    } else {
+      xData = ['暂无数据'];
+      yData = [0];
+    }
+
+    this.barChart = echarts.init(this.$refs.barChart);
+    let option = {
+      grid: {
+        top: '40px',
+        left: '40px',
+        right: '40px',
+        bottom: '40px'
+      },
+      title: {
+        text: '近30天借阅排名',
+        textStyle: {
+          color: '#aaa',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          fontSize: 18
         },
-        title: {
-          text: '近30天借阅排名',
+        x: 'center',
+        y: 'top'
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      xAxis: {
+        data: xData,
+        type: 'category',
+        axisLabel: {
+          rotate: 30,
           textStyle: {
-            color: '#aaa',
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-            fontSize: 18
-          },
-          x: 'center',
-          y: 'top'
-        },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
+            color: '#2F4F4F'
           }
         },
-        xAxis: {
-          data: xData,
-          type: 'category',
-          axisLabel: {
-            rotate: 30, // 倾斜30度,
-            textStyle: {
-              color: '#2F4F4F'
-            }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#2F4F4F'
-            }
+        axisLine: {
+          lineStyle: {
+            color: '#2F4F4F'
           }
-        },
-        yAxis: {
-          type: 'value',
-          axisLine: {show: false},
-          axisTick: {show: false},
-          splitLine: {
-            show: true, // 网格线
-            lineStyle: {
-              color: 'rgba(10, 10, 10, 0.1)',
-              width: 1,
-              type: 'solid'
-            }
+        }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: { show: false },
+        axisTick: { show: false },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: 'rgba(10, 10, 10, 0.1)',
+            width: 1,
+            type: 'solid'
           }
-        },
-        series: [
-          {
-            data: yData,
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                color: function (params) {
-                  // 柱图颜色
-                  return '#70B0EA'
-                }
+        }
+      },
+      series: [
+        {
+          data: yData,
+          type: 'bar',
+          itemStyle: {
+            normal: {
+              color: function (params) {
+                return '#70B0EA';
               }
             }
           }
-        ]
-      }
-      this.barChart.setOption(option)
-    },
+        }
+      ]
+    };
+    this.barChart.setOption(option);
+  },
     initPieChart () {
       let pieData = []
       this.data.classification_rank_data.forEach((item, index) => {

@@ -6,20 +6,6 @@
         <a-tree :tree-data="cData" :selected-keys="selectedKeys" @select="onSelect" style="min-height: 220px;">
         </a-tree>
       </div>
-      <!--      <div class="left-search-item"><h4>书籍状态</h4>-->
-      <!--        <div class="check-item flex-view"><input type="checkbox" name="state"-->
-      <!--                                                 id="state0" value=""><label-->
-      <!--          for="state0">上架</label>-->
-      <!--        </div>-->
-      <!--        <div class="check-item flex-view"><input type="checkbox" name="state"-->
-      <!--                                                 id="state1" value=""><label-->
-      <!--          for="state1">下架</label>-->
-      <!--        </div>-->
-      <!--        <div class="check-item flex-view"><input type="checkbox" name="state"-->
-      <!--                                                 id="state2" value=""><label-->
-      <!--          for="state2">预售</label>-->
-      <!--        </div>-->
-      <!--      </div>-->
       <div class="left-search-item"><h4>热门标签</h4>
         <div class="tag-view tag-flex-view">
             <span class="tag" :class="{'tag-select': selectTagId===item.id}" v-for="item in tagData" :key="item.id"
@@ -79,7 +65,7 @@ export default {
       tagData: [],
       loading: false,
 
-      tabData: ['最新', '最热', '推荐'],
+      tabData: ['最新', '最热', '库存最少'],
       selectTabIndex: 0,
       tabUnderLeft: 12,
 

@@ -19,10 +19,13 @@ def list_api(request):
 
         # 排序方式
         order = '-create_time'
+        print(order)
         if sort == 'recent':
             order = '-create_time'
-        elif sort == 'hot' or sort == 'recommend':
-            order = '-pv'
+        elif sort == 'hot':
+            order = '-collect_count'
+        elif sort == 'recommend':
+            order = 'repertory'
 
         if keyword:
             books = Book.objects.filter(title__contains=keyword).order_by(order)
